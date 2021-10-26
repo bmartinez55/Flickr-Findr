@@ -1,6 +1,6 @@
 package c.bmartinez.flickrfindr.data.dto;
 
-class PhotosSearchResponse {
+public class PhotosSearchResponse {
     private PhotosMetaData photos;
     private String stat;
 

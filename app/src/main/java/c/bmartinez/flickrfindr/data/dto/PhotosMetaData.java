@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-class PhotosMetaData {
+public class PhotosMetaData {
     private int page;
     private String pages;
     @SerializedName("perpage") private int perPage;
