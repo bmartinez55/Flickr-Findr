@@ -1,6 +1,7 @@
 package c.bmartinez.flickrfindr.data
 
 import c.bmartinez.flickrfindr.data.dto.PhotosSearchResponse
+import okhttp3.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
