@@ -1,7 +1,8 @@
-package c.bmartinez.flickrfindr
+package c.bmartinez.flickrfindr.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import c.bmartinez.flickrfindr.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
