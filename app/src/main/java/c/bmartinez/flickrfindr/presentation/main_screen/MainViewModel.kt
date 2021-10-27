@@ -1,10 +1,11 @@
-package c.bmartinez.flickrfindr.presentation
+package c.bmartinez.flickrfindr.presentation.main_screen
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import c.bmartinez.flickrfindr.data.dto.PhotosSearchResponse
+import c.bmartinez.flickrfindr.data.dto.Photo
 import c.bmartinez.flickrfindr.data.repository.FlickrFindrRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,29 +16,37 @@ class MainViewModel @Inject constructor(
     private val flickrFindrRepository: FlickrFindrRepository
 ): ViewModel(){
 
-    private val _liveData: MutableLiveData<PhotosSearchResponse> = MutableLiveData()
-    val state: MutableLiveData<PhotosSearchResponse> = _liveData
+    val state: MutableState<List<Photo>> = mutableStateOf(emptyList())
 
-    val queryTerm: MutableLiveData<String> = MutableLiveData("")
+    //Initializing the queryTerm variable to Manhwa first.
+    val queryTerm = mutableStateOf("")
 
-    suspend fun getPhotos(searchTerm: String) {
+    val fullSizeImageUrl = mutableStateOf("")
+
+    init {
+        getPhotos("jdm")
+    }
+
+    fun getPhotos(searchTerm: String) {
         viewModelScope.launch {
             try{
                 val response = flickrFindrRepository.getPhotos(searchTerm)
-                if(response != null){
-                    _liveData.value = response
-                }
+                state.value = response.photosMetaData.photo
             } catch (e: Exception) {
                 Log.d("MainViewModel", e.stackTraceToString())
             }
         }
     }
 
-    fun onSearchTermClear() {
-        this.queryTerm.value = ""
+    fun onFullSizeImageUrlChange(imageUrl: String) {
+        this.fullSizeImageUrl.value = imageUrl
     }
 
     fun onQueryTermChange(query: String) {
         this.queryTerm.value = query
+    }
+
+    fun onQueryTermClear() {
+        this.queryTerm.value = ""
     }
 }

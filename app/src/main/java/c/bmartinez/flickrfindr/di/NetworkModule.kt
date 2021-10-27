@@ -1,6 +1,8 @@
 package c.bmartinez.flickrfindr.di
 
 import c.bmartinez.flickrfindr.utils.FlickrFindrConstants
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,13 +20,22 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        gson: Gson
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(FlickrFindrConstants.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideGsonBuilder() = GsonBuilder()
+        .setLenient()
+        .create()
 
     @Singleton
     @Provides
@@ -41,8 +52,8 @@ object NetworkModule {
     ): OkHttpClient =
         OkHttpClient
             .Builder()
-            .addNetworkInterceptor(ApiKeyAuthInterceptor())
-            .addInterceptor(httpLoggingInterceptor)
+            //.addNetworkInterceptor(ApiKeyAuthInterceptor())
+            .addNetworkInterceptor(httpLoggingInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
