@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.23513513513513515" />
         <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/layout/full_photo_display_fragment.xml" value="0.14140625" />
+        <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/layout/photo_list_item.xml" value="0.1640625" />
+        <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/layout/search_photos_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/bcast/Desktop/FlickrFindr/app/src/main/res/menu/search_view_menu.xml" value="0.101953125" />
       </map>
     </option>
   </component>

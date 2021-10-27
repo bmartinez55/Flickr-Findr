@@ -1,13 +1,15 @@
 package c.bmartinez.flickrfindr.data
 
 import c.bmartinez.flickrfindr.data.dto.PhotosSearchResponse
-import retrofit2.http.GET
-import retrofit2.http.Query
+import c.bmartinez.flickrfindr.utils.FlickrFindrConstants
+import okhttp3.Response
+import retrofit2.http.*
 
 interface RetrofitApi {
 
-    @GET("?method=flickr.photos.search")
+    @Headers("Content-Type: application/json")
+    @POST("?method=flickr.photos.search&api_key=${FlickrFindrConstants.API_KEY}&format=json&nojsoncallback=1")
     suspend fun getPhotos(
-        @Query("term") searchTerm: String
+        @Query("text") searchTerm: String
     ): PhotosSearchResponse
 }
